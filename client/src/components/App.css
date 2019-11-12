@@ -31,7 +31,28 @@ header {
   background-image: linear-gradient(#1a73e8, #1a73e8);
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 100%;
+}
+
+.dashboard-device {
+  background-image: linear-gradient(#1abc9c, #1abc9c);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.dashboard-logs {
+  background-image: linear-gradient(#e67e22, #d35400);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.dashboard-analytics {
+  background-image: linear-gradient(#a29bfe, #6c5ce7);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
 }
 
 .your-devices {
@@ -62,7 +83,7 @@ header {
 }
 
 .add-device-cancel {
-  font-size: 30px;
+  font-size: 25px;
   margin: 50px 14px 50px 50px;
   color: #7f8fa6;
 }
@@ -102,7 +123,7 @@ header {
   top: 25px;
   left: 30px;
   transition: color 0.25s ease-out;
-  z-index: 10;
+  z-index: 1;
 }
 
 .content-icon:hover,
@@ -165,6 +186,33 @@ h1 {
   height: 50px;
 }
 
+.spinner2 {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: 300px auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.center {
+  position: fixed;
+  text-align: center;
+  z-index: 999;
+  overflow: show;
+  margin: 300px auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+}
+
 .monit {
   height: 150px;
   width: auto;
@@ -215,4 +263,24 @@ p {
 .header-dropdown-content:hover,
 .header-dropdown-content:active {
   color: #080808;
+}
+
+.ui.disabled.huge.button.device {
+  padding: 25px 70px;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #718093;
+}
+
+.ui.huge.button.device {
+  padding: 25px 70px;
+  font-size: 14px;
+  background-color: #1a73e8;
+  color: #fff;
+  transition: background-color 0.25s ease-out;
+}
+
+.ui.huge.button.device:hover,
+.ui.huge.button.device:active {
+  background-color: #1765cc;
 }

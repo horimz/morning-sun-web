@@ -8,6 +8,11 @@ import MainPage from './MainPage';
 import Devices from './devices';
 import Logs from './logs';
 import Analytics from './analytics';
+import Spinner1 from '../../utils/Spinner1';
+
+import { deviceActions } from '../../actions';
+
+const { fetchDevices } = deviceActions;
 
 class Dashboard extends Component {
   state = {
@@ -17,15 +22,21 @@ class Dashboard extends Component {
     visible: false
   };
 
+  componentDidMount() {
+    this.props.fetchDevices();
+  }
+
   handleAnimationChange = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
   };
 
   render() {
-    const auth = this.props.auth;
+    const { auth, devices } = this.props;
     const { animation, direction, dimmed, visible } = this.state;
 
     if (auth === false) return <Redirect to='/' />;
+
+    if (devices === null) return <Spinner1 />;
 
     return (
       <BrowserRouter>
@@ -35,6 +46,7 @@ class Dashboard extends Component {
               animation={animation}
               direction={direction}
               visible={visible}
+              onClick={this.handleAnimationChange}
             />
 
             <Sidebar.Pusher
@@ -51,8 +63,8 @@ class Dashboard extends Component {
               <div>
                 <Switch>
                   <Route exact path='/dashboard' component={MainPage} />
-                  <Route exact path='/dashboard/devices' component={Devices} />
-                  <Route exact path='/dashboard/logs' component={Logs} />
+                  <Route path='/dashboard/devices' component={Devices} />
+                  <Route path='/dashboard/logs' component={Logs} />
                   <Route
                     exact
                     path='/dashboard/analytics'
@@ -69,7 +81,10 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth };
+  return { auth: state.auth, devices: state.devices };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  { fetchDevices }
+)(Dashboard);

@@ -22,7 +22,6 @@ const { setUser } = userActions;
 
 class App extends Component {
   componentDidMount() {
-    // firebase.auth().signOut();
     firebase.auth().onAuthStateChanged(async user => {
       if (user) {
         const { uid, displayName, email, emailVerified, photoURL } = user;

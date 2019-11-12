@@ -5,13 +5,15 @@ const { firestore } = require('../firebase/firebase-admin');
 router.post('/api/login', async (req, res) => {
   const user = req.body;
 
-  const userDocRef = await firestore.doc(`users/${user.uid}`);
+  const userDocRef = firestore.doc(`users/${user.uid}`);
   const userDoc = await userDocRef.get();
 
   if (!userDoc.exists) {
     await userDocRef.set(user);
     console.log('Successfuly added a new user to firestore!');
   }
+
+  console.log('An existing user signed in!');
 
   res.send({});
 });

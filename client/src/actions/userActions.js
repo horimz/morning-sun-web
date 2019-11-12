@@ -4,8 +4,6 @@ import firebase from '../firebase/firebase-init';
 const { SET_USER } = userActionTypes;
 
 const setUser = user => async dispatch => {
-  console.log(user);
-
   if (user) {
     const idToken = await firebase.auth().currentUser.getIdToken(true);
 

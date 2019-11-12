@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Sidebar } from 'semantic-ui-react';
 
 import Header from '../public/shared/Header';
@@ -36,8 +37,8 @@ class MainPage extends Component {
           className='ui basic segment'
           style={{
             margin: '0px',
-            backgroundImage: 'linear-gradient(#f5f6fa, #f5f6fa)',
-            height: '75vh'
+            paddingBottom: '100px',
+            backgroundImage: 'linear-gradient(#f5f6fa, #f5f6fa)'
           }}
         >
           <div className='ui basic segment'>
@@ -64,50 +65,7 @@ class MainPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div
-                      className='five wide column'
-                      style={{ minWidth: '200px' }}
-                    >
-                      <div
-                        className='ui segment device'
-                        style={{ borderRadius: '8px' }}
-                      >
-                        <div className='device-segment'>1</div>
-                      </div>
-                    </div>
-                    <div
-                      className='five wide column'
-                      style={{ minWidth: '200px' }}
-                    >
-                      <div
-                        className='ui segment device'
-                        style={{ borderRadius: '8px' }}
-                      >
-                        <div className='device-segment'>2</div>
-                      </div>
-                    </div>
-                    <div
-                      className='five wide column'
-                      style={{ minWidth: '200px' }}
-                    >
-                      <div
-                        className='ui segment device'
-                        style={{ borderRadius: '8px' }}
-                      >
-                        <div className='device-segment'>3</div>
-                      </div>
-                    </div>
-                    <div
-                      className='five wide column'
-                      style={{ minWidth: '200px' }}
-                    >
-                      <div
-                        className='ui segment device'
-                        style={{ borderRadius: '8px' }}
-                      >
-                        <div className='device-segment'>4</div>
-                      </div>
-                    </div>
+                    {this.renderDevices()}
                   </div>
                 </div>
               </div>
@@ -115,8 +73,61 @@ class MainPage extends Component {
             </div>
           </div>
         </div>
+        <div
+          className='ui basic segment'
+          style={{
+            margin: '0px',
+            backgroundImage: 'linear-gradient(#f5f6fa, #f5f6fa)',
+            height: '35vh'
+          }}
+        >
+          <div className='ui basic segment' style={{ textAlign: 'center' }}>
+            <div className='ui grid'>
+              <div className='eight wide column'>
+                <div className='ui basic segment'>
+                  <div className='ui grid'>
+                    <div className='four wide column'></div>
+                    <div className='twelve wide column'>
+                      <div className='ui segment'>API key</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='eight wide column'>
+                <div className='ui basic segment'>
+                  <div className='ui grid'>
+                    <div className='twelve wide column'>
+                      <div className='ui segment'>Send feedback</div>
+                    </div>
+                    <div className='four wide column'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
+  }
+
+  renderDevices() {
+    const { data } = this.props.devices;
+
+    return data.map(device => {
+      return (
+        <div
+          key={device.id}
+          className='five wide column'
+          style={{ minWidth: '200px' }}
+        >
+          <Link to={`/dashboard/devices/${device.id}`}>
+            <div className='ui segment device' style={{ borderRadius: '8px' }}>
+              <div className='device-segment'>{device.id}</div>
+            </div>
+          </Link>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -142,7 +153,7 @@ class MainPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth, device: state.devices };
+  return { auth: state.auth, devices: state.devices };
 };
 
 export default connect(mapStateToProps)(MainPage);
