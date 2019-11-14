@@ -14,7 +14,10 @@ class Device extends Component {
     return (
       <div className='dashboard-device'>
         <Header logo={false} dashboard={true} />
-        <div className='ui basic segment' style={{ margin: '50px 0px 0px' }}>
+        <div
+          className='ui basic segment'
+          style={{ margin: '0px', padding: '120px 14px 30px' }}
+        >
           <div className='ui basic segment'>
             <div className='ui grid'>
               <div className='three wide column'></div>

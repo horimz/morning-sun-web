@@ -1,33 +1,6 @@
-/* <header>
-<div className='nav-bar'>
-  <div className='nav-top'>
-    <div>
-      <div className='nav-top-links'>
-        <Link>Product</Link>
-        <Link>Docs</Link>
-        <Link>Support</Link>
-      </div>
-    </div>
-  </div>
-  <div className='nav-bottom'>
-    <img
-      src='./assets/images/logo.png'
-      alt='Morning Sun logo'
-      className='logo'
-    />
-    <div className='nav-bottom-links'>
-      <Link to='/signup'>Join</Link>
-      <Link to='/signin'>Sign In</Link>
-    </div>
-  </div>
-</div>
-<div className='container'>
-  <div className='hero-contents'>
-    <div className='hero-text-box'>
-      <h1>Manage Photovoltaic Panels</h1>
-      <Link className='btn btn-full'>Button 1</Link>
-      <Link className='btn btn-ghost'>Button 2</Link>
-    </div>
-  </div>
-</div>
-</header> */
+@media only screen and (max-width: 600px) {
+  .monit {
+    height: auto;
+    width: 250px;
+  }
+}

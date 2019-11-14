@@ -38,7 +38,7 @@ const deleteDevice = id => async dispatch => {
 const resetDeviceStatus = devices => dispatch => {
   dispatch({
     type: FETCH_DEVICES,
-    payload: { data: devices, status: 'fetched' }
+    payload: { data: devices, status: 'reset' }
   });
 };
 

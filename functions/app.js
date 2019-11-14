@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
+const logRoutes = require('./routes/logRoutes');
 
 const app = express();
 
@@ -21,8 +22,9 @@ app.get('/timestamp-cached', (req, res) => {
 
 app.use(authRoutes);
 app.use(deviceRoutes);
+app.use(logRoutes);
 
-// app.use(express.static('build'));
+// app.use(express.static(__dirname + '../client/build/index.html'));
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
 });

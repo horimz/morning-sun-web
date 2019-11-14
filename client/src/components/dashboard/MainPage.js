@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Sidebar } from 'semantic-ui-react';
 
 import Header from '../public/shared/Header';
+import Footer from '../public/shared/Footer';
 import AddDevice from './devices/AddDevice';
 
 class MainPage extends Component {
@@ -22,7 +23,10 @@ class MainPage extends Component {
     return (
       <div className='dashboard-main'>
         <Header logo={false} dashboard={true} />
-        <div className='ui basic segment' style={{ margin: '50px 0px 0px' }}>
+        <div
+          className='ui basic segment'
+          style={{ margin: '0px', padding: '120px 14px 30px' }}
+        >
           <div className='ui basic segment'>
             <div className='ui grid'>
               <div className='three wide column'></div>
@@ -106,6 +110,7 @@ class MainPage extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import ScrollToTopRoute from './ScrollToTopRoute';
 import './App.css';
 import './queries.css';
-
 import Landing from './public/Landing';
 import Login from './public/Login';
 import Product from './public/Product';
@@ -14,7 +14,6 @@ import PrivacyPolicy from './shared/PrivacyPolicy';
 import Dashboard from './dashboard';
 import PageNotFound from './shared/PageNotFound';
 import Spinner1 from '../utils/Spinner1';
-
 import firebase from '../firebase/firebase-init';
 import { userActions } from '../actions/';
 
@@ -51,15 +50,20 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/product' component={Product} />
-            <Route exact path='/purchase' component={Purchase} />
-            <Route exact path='/docs' component={Docs} />
-            <Route exact path='/terms-of-service' component={TermsOfService} />
-            <Route exact path='/privacy' component={PrivacyPolicy} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route component={PageNotFound} />
+            <ScrollToTopRoute exact path='/' component={Landing} />
+            <ScrollToTopRoute path='/login' component={Login} />
+            <ScrollToTopRoute path='/product' component={Product} />
+            <ScrollToTopRoute path='/purchase' component={Purchase} />
+            <ScrollToTopRoute path='/docs' component={Docs} />
+            <ScrollToTopRoute
+              exact
+              path='/terms-of-service'
+              component={TermsOfService}
+            />
+            <ScrollToTopRoute path='/privacy' component={PrivacyPolicy} />
+            <ScrollToTopRoute path='/dashboard' component={Dashboard} />
+
+            <ScrollToTopRoute component={PageNotFound} />
           </Switch>
         </div>
       </BrowserRouter>

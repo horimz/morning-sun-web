@@ -130,7 +130,10 @@ class AddDevice extends Component {
                         className='ui basic segment'
                         style={{ marginTop: '50px' }}
                       >
-                        <div className='ui input' style={{ width: '100%' }}>
+                        <div
+                          className='ui input add-device'
+                          style={{ width: '100%' }}
+                        >
                           <input
                             type='text'
                             onChange={e => this.onChange(e)}

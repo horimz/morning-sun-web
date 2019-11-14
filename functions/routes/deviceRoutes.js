@@ -3,6 +3,7 @@ const router = new express.Router();
 const authenticateToken = require('../middlewares/authenticateToken');
 const { firestore } = require('../firebase/firebase-admin');
 
+// authenticateToken middleware stores the user information in the request (req.user = user)
 router.get('/api/devices', authenticateToken, async (req, res) => {
   try {
     const devices = await fetchDevices(req.user.uid);

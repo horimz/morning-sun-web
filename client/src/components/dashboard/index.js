@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Sidebar } from 'semantic-ui-react';
-
 import LeftSidebar from './LeftSidebar';
 import MainPage from './MainPage';
 import Devices from './devices';
-import Logs from './logs';
+import Logs from './logs/Logs';
 import Analytics from './analytics';
 import Spinner1 from '../../utils/Spinner1';
 
@@ -65,11 +64,7 @@ class Dashboard extends Component {
                   <Route exact path='/dashboard' component={MainPage} />
                   <Route path='/dashboard/devices' component={Devices} />
                   <Route path='/dashboard/logs' component={Logs} />
-                  <Route
-                    exact
-                    path='/dashboard/analytics'
-                    component={Analytics}
-                  />
+                  <Route path='/dashboard/analytics' component={Analytics} />
                 </Switch>
               </div>
             </Sidebar.Pusher>
@@ -81,7 +76,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth, devices: state.devices };
+  return { auth: state.auth, devices: state.devices, logs: state.logs };
 };
 
 export default connect(

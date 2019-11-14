@@ -1,90 +1,109 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from './shared/Header';
+import Footer from './shared/Footer';
 
-function Landing() {
+function Landing(props) {
+  const signup = () => {
+    if (props.auth === false) {
+      return (
+        <div className='ui basic segment clear'>
+          <Link to='/login' className='ui massive button landing-signin'>
+            Sign Up
+          </Link>
+        </div>
+      );
+    }
+  };
+
   return (
-    <div style={{ minWidth: '1000px' }}>
+    <div>
       <header>
         <Header logo={true} />
+        <div className='ui segment landing'>
+          <div className='ui basic segment'>
+            <h2 style={{ fontSize: '50px', color: '#fff' }}>
+              Manage Photovoltaic Panels
+            </h2>
+          </div>
+        </div>
 
-        <div className='ui container'>
-          <div className='ui basic segment' style={{ height: '87vh' }}>
+        <div
+          className='ui basic segment body'
+          style={{ backgroundColor: '#fff' }}
+        >
+          <div
+            className='ui grid'
+            style={{ textAlign: 'center', margin: '0px' }}
+          >
             <div
-              className='ui basic segment'
-              style={{ marginTop: '80px', textAlign: 'center' }}
+              className='eight wide column'
+              style={{ padding: '50px 0px 50px 60px' }}
             >
-              <h1>Manage Photovoltaic Panels</h1>
+              <img
+                src='/assets/images/monit-2.png'
+                className='monit'
+                alt='monit'
+              />
             </div>
             <div
-              className='ui basic segment'
-              style={{ marginTop: '60px', padding: '14px 30px' }}
+              className='eight wide column'
+              style={{ padding: '70px 50px', minWidth: '375px' }}
             >
-              <div className='ui grid'>
-                <div
-                  className='eight wide column'
-                  style={{ textAlign: 'center' }}
-                >
-                  <img
-                    src='/assets/images/monit.png'
-                    className='monit'
-                    alt='monit'
-                  />
-                </div>
-                <div
-                  className='eight wide column'
-                  style={{ textAlign: 'center', padding: '40px 14px' }}
-                >
-                  <h2>Manage your ecosystem</h2>
-                  <p>Keep an eye on your tracking system</p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className='ui basic segment'
-              style={{
-                marginTop: '60px',
-                padding: '14px 50px',
-                textAlign: 'center'
-              }}
-            >
-              <div className='ui grid'>
-                <div
-                  className='eight wide column'
-                  style={{ padding: '14px 110px' }}
-                >
-                  <i
-                    className='chart bar outline icon'
-                    style={{ fontSize: '40px', marginBottom: '20px' }}
-                  />
-                  <p style={{ color: '#e74c3c', fontWeight: '500' }}>
-                    Real-time monitoring
-                  </p>
-                  <p>
-                    Send sensor values from your panel and track them in real
-                    time.
-                  </p>
-                </div>
-                <div
-                  className='eight wide column'
-                  style={{ padding: '14px 110px' }}
-                >
-                  <i
-                    className='eye icon'
-                    style={{ fontSize: '40px', marginBottom: '20px' }}
-                  />
-                  <p style={{ color: '#e74c3c', fontWeight: '500' }}>
-                    Photovoltaic energy forecast
-                  </p>
-                  <p>Photovoltaic energy prediction for better maintenance.</p>
-                </div>
-              </div>
+              <h2>Manage your ecosystem</h2>
+              <p>Keep an eye on your tracking system</p>
+              <Link to='/product' className='ui big button learn-more'>
+                How to start
+              </Link>
             </div>
           </div>
         </div>
+
+        <div className='ui basic segment body'>
+          <div
+            className='ui grid'
+            style={{ textAlign: 'center', margin: '0px' }}
+          >
+            <div
+              className='eight wide column'
+              style={{ padding: '50px 100px', minWidth: '375px' }}
+            >
+              <i
+                className='chart bar outline icon'
+                style={{ fontSize: '70px', marginBottom: '20px' }}
+              />
+              <p style={{ color: '#e74c3c', fontWeight: '500' }}>
+                Real-time monitoring
+              </p>
+              <p>
+                Send sensor values from your panel and track them in real time.
+              </p>
+            </div>
+            <div
+              className='eight wide column'
+              style={{ padding: '50px 100px', minWidth: '375px' }}
+            >
+              <i
+                className='eye icon'
+                style={{ fontSize: '70px', marginBottom: '20px' }}
+              />
+              <p style={{ color: '#e74c3c', fontWeight: '500' }}>
+                Photovoltaic energy forecast
+              </p>
+              <p>Photovoltaic energy prediction for better maintenance.</p>
+            </div>
+          </div>
+        </div>
+        {signup()}
+        <Footer />
       </header>
     </div>
   );
 }
 
-export default Landing;
+const mapStateToProps = state => {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(Landing);

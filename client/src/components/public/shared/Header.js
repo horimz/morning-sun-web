@@ -1,22 +1,55 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from '../../../firebase/firebase-init';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Menu } from 'semantic-ui-react';
 
 class Header extends Component {
+  state = { prevScrollPos: window.pageYOffset, visible: true };
+
   signOut = () => firebase.auth().signOut();
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { location } = this.props;
+
+    if (location.pathname.includes('dashboard')) return;
+
+    // const { prevScrollPos } = this.state;
+    const currentScrollPos = window.pageYOffset;
+
+    if (currentScrollPos > 200) return this.setState({ visible: false });
+
+    this.setState({ visible: true });
+    // const visible = prevScrollPos > currentScrollPos;
+  };
 
   renderHeaderContent() {
     const auth = this.props.auth;
+    const { visible } = this.state;
 
     if (this.props.auth === false) {
       return (
-        <div style={{ paddingTop: '14px' }}>
-          <Link to='/docs' className='nav-bar-top-link join'>
+        <div>
+          <Link
+            to='/docs'
+            className={
+              visible ? 'nav-bar-top-link join' : 'nav-bar-top-link2 join'
+            }
+          >
             Docs
           </Link>
-          <Link to='/login' className='nav-bar-top-link'>
+          <Link
+            to='/login'
+            className={visible ? 'nav-bar-top-link' : 'nav-bar-top-link2'}
+          >
             Login
           </Link>
         </div>
@@ -58,9 +91,9 @@ class Header extends Component {
             style={{ margin: '0px', padding: '0px' }}
           >
             {this.props.dashboard ? (
-              <Link to='/dashboard/analytics'>
-                <p className='header-dropdown-content'>Analytics</p>
-              </Link>
+              <a href='/'>
+                <p className='header-dropdown-content'>Home</p>
+              </a>
             ) : (
               <Link to='/dashboard'>
                 <p className='header-dropdown-content'>Dashboard</p>
@@ -93,22 +126,17 @@ class Header extends Component {
   }
 
   render() {
+    const { visible } = this.state;
     return (
-      <div className='ui basic segment' style={{ borderRadius: '0px' }}>
-        <div className='ui grid'>
-          <div className='two wide column' style={{ padding: '0px 14px' }}>
-            {this.renderLogo()}
-          </div>
-          <div className='fourteen wide column'>
-            <div
-              className='ui clearing basic segment'
-              style={{ float: 'right', padding: '0px' }}
-            >
-              {this.renderHeaderContent()}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Menu
+        className={visible ? 'shared-header' : 'shared-header-hidden'}
+        size='tiny'
+        borderless
+        // style={{ padding: '10px 0px' }}
+      >
+        <Menu.Item style={{ padding: '0px' }}>{this.renderLogo()}</Menu.Item>
+        <Menu.Item position='right'>{this.renderHeaderContent()}</Menu.Item>
+      </Menu>
     );
   }
 }
@@ -117,4 +145,4 @@ const mapStateToProps = state => {
   return { auth: state.auth };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

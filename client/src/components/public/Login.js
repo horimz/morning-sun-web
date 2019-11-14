@@ -65,15 +65,32 @@ class SignIn extends Component {
               <h1>Morning Sun</h1>
             </div>
             <div className='ui basic segment' style={{ textAlign: 'center' }}>
-              <div>
-                <img
-                  src='./assets/images/logo.png'
-                  className='signin-logo'
-                  alt='signin-logo'
-                />
+              <div className='ui grid'>
+                <div
+                  className='ui five wide column'
+                  style={{ minWidth: '0px' }}
+                ></div>
+                <div
+                  className='ui six wide column'
+                  style={{ minWidth: '350px' }}
+                >
+                  <div className='ui segment sign-in-box'>
+                    <div>
+                      <img
+                        src='./assets/images/logo.png'
+                        className='signin-logo'
+                        alt='signin-logo'
+                      />
+                    </div>
+                    <p className='signin-text'>Start now</p>
+                    <div>{this.renderSignInForm()}</div>
+                  </div>
+                </div>
+                <div
+                  className='ui five wide column'
+                  style={{ minWidth: '0px' }}
+                ></div>
               </div>
-              <p className='signin-text'>Start now</p>
-              <div>{this.renderSignInForm()}</div>
             </div>
           </div>
         </div>

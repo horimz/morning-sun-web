@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../../public/shared/Header';
+import Footer from '../../public/shared/Footer';
 
 class Analytics extends Component {
   render() {
     return (
       <div className='dashboard-analytics'>
         <Header logo={false} dashboard={true} />
-        <div className='ui basic segment' style={{ margin: '50px 0px 0px' }}>
+        <div
+          className='ui basic segment'
+          style={{ margin: '0px', padding: '120px 14px 30px' }}
+        >
           <div className='ui basic segment'>
             <div className='ui grid'>
               <div className='three wide column'></div>
@@ -29,6 +33,7 @@ class Analytics extends Component {
         >
           <div className='ui segment'>Content</div>
         </div>
+        <Footer />
       </div>
     );
   }

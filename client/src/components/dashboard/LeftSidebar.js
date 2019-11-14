@@ -48,7 +48,7 @@ class LeftSidebar extends Component {
           vertical
           visible={visible}
           // width='wide'
-          // icon='labeled'
+          icon='labeled'
           style={{ width: '200px' }}
         >
           <div>{this.content()}</div>
