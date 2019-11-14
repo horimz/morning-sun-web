@@ -118,9 +118,19 @@ class Header extends Component {
   renderLogo() {
     if (!this.props.logo) return;
 
+    const { visible } = this.state;
+
     return (
       <Link to='/'>
-        <img src='./assets/images/logo.png' className='logo' alt='logo' />
+        <img
+          src={
+            visible
+              ? './assets/images/logo-white.png'
+              : './assets/images/logo.png'
+          }
+          className='logo'
+          alt='logo'
+        />
       </Link>
     );
   }
