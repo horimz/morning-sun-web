@@ -1,20 +1,23 @@
 import axios from 'axios';
 import { userActionTypes } from './types';
-import firebase from '../firebase/firebase-init';
-const { SET_USER } = userActionTypes;
+const { FETCH_USER, SET_USER } = userActionTypes;
+
+const fetchUser = () => async dispatch => {
+  const res = await axios.get('/api/current_user');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
 
 const setUser = user => async dispatch => {
-  if (user) {
-    const idToken = await firebase.auth().currentUser.getIdToken(true);
-
-    // Set default request headers/content-type
-    axios.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
-  }
-
   dispatch({ type: SET_USER, payload: user });
 };
 
+const generateKey = () => async dispatch => {
+  const res = await axios.get('/api/generateKey');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
 export const userActions = {
-  setUser
+  fetchUser,
+  setUser,
+  generateKey
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import ScrollToTopRoute from './ScrollToTopRoute';
@@ -8,32 +9,28 @@ import Landing from './public/Landing';
 import Login from './public/Login';
 import Product from './public/Product';
 import Purchase from './public/Purchase';
-import Docs from './shared/Docs';
-import TermsOfService from './shared/TermsOfService';
-import PrivacyPolicy from './shared/PrivacyPolicy';
+import Docs from './public/Docs';
+import TermsOfService from './public/TermsOfService';
+import PrivacyPolicy from './public/PrivacyPolicy';
 import Dashboard from './dashboard';
-import PageNotFound from './shared/PageNotFound';
+import PageNotFound from './public/PageNotFound';
 import Spinner1 from '../utils/Spinner1';
 import firebase from '../firebase/firebase-init';
 import { userActions } from '../actions/';
 
-const { setUser } = userActions;
+const { fetchUser, setUser } = userActions;
 
 class App extends Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(async user => {
       if (user) {
-        const { uid, displayName, email, emailVerified, photoURL } = user;
+        const idToken = await firebase.auth().currentUser.getIdToken(true);
 
-        const currentUser = {
-          uid,
-          displayName,
-          email,
-          emailVerified,
-          photoURL
-        };
+        // Set default request headers/content-type
+        axios.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
+        axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-        this.props.setUser(currentUser);
+        this.props.fetchUser();
       } else {
         // No user is signed in
         this.props.setUser(false);
@@ -77,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setUser }
+  { fetchUser, setUser }
 )(App);

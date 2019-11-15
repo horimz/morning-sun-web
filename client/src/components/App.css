@@ -7,7 +7,7 @@ body {
 html {
   background-color: #f7f7f7;
   color: #555;
-  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+  font-family: 'Poppins', 'Source Sans Pro', 'Lucida Grande', sans-serif;
   font-size: 14px;
   font-weight: 300;
   text-rendering: optimizeLegibility;
@@ -195,6 +195,11 @@ h1 {
   word-spacing: 4px;
   margin-top: 0;
   margin-bottom: 20px;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
 .spinner {
@@ -471,4 +476,102 @@ p {
 .ui.big.button.learn-more:hover,
 .ui.big.button.learn-more:active {
   box-shadow: 3px 4px 5px #747d8c;
+}
+
+.feedback-header {
+  font-size: 20px;
+  text-align: left;
+  padding: 7px 0px 7px 15px;
+}
+
+.envelope.icon.feedback {
+  font-size: 35px;
+  padding-top: 11px;
+}
+
+.feedback-text {
+  text-align: left;
+}
+
+.feedback-submit {
+  cursor: pointer;
+  color: rgb(65, 131, 196);
+}
+
+.feedback-segment {
+  position: fixed;
+  left: 35%;
+  top: 25%;
+  z-index: 1001;
+}
+
+.ui.fluid.button.key {
+  border: 1px solid rgba(222, 154, 82, 0.5);
+  color: #e21515;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 89, 89, 0.1) 97%
+  );
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ui.fluid.button.key:hover,
+.ui.fluid.button.key:active {
+  border: 1px solid rgba(222, 154, 82, 0.6);
+  color: #aa2b2b;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 89, 89, 0.2) 97%
+  );
+}
+
+.ui.segment.key-loader {
+  padding: 35px 0px;
+}
+
+.copy-icon {
+  float: right;
+}
+
+.key-copy-popup {
+  border-radius: 8px;
+  opacity: 1;
+  text-align: center;
+  width: 130px;
+}
+
+.ui.segment.key-box {
+  margin-top: 0px;
+}
+
+.ui.basic.segment.left-side-bar {
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.ui.basic.segment.left-side-bar.item {
+  padding: 25px 14px;
+  /* border-bottom: 0.2px solid lightgrey; */
+  font-family: 'Poppins', sans-serif;
+  color: #ced6e0;
+  transition: transform 0.25s ease-in-out, color 0.25s ease-in-out,
+    background-color 0.25s ease-in-out;
+}
+
+.ui.basic.segment.left-side-bar.item:hover,
+.ui.basic.segment.left-side-bar.item:active {
+  transform: scale(1.2);
+  color: #3c6382;
+  background-color: #fff;
+}
+
+.left-side-bar-logo {
+  width: 150px;
+  height: auto;
+}
+
+.home-icon {
+  font-size: 23px;
 }

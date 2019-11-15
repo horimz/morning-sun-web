@@ -3,4 +3,8 @@
     height: auto;
     width: 250px;
   }
+
+  .api-key-text {
+    font-size: 12px;
+  }
 }
