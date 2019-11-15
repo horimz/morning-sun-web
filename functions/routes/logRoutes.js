@@ -68,7 +68,7 @@ async function createRandomLogs(uid, level, n) {
     const log = {
       date: new Date().toString(),
       deviceId: 'pi-1',
-      message: 'This is a log message for test purpose.',
+      message: 'This is a log message for test purpose',
       level
     };
 
