@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Modal, Menu, Dropdown, Sidebar } from 'semantic-ui-react';
 import Header from '../../public/shared/Header';
 import Footer from '../../public/shared/Footer';
@@ -211,11 +211,11 @@ class Device extends Component {
       return (
         <div className='ui basic segment device-no-data'>
           <p>No messages were published from this device.</p>
-          <a href='/docs' rel='noopener noreferrer' target='_blank'>
+          <Link to='/docs' rel='noopener noreferrer' target='_blank'>
             <p style={{ cursor: 'pointer', color: 'rgb(65, 131, 196)' }}>
               Start publishing data
             </p>
-          </a>
+          </Link>
         </div>
       );
 
@@ -250,11 +250,11 @@ class Device extends Component {
       return (
         <div className='ui basic segment device-no-data'>
           <p>No logs were published from this device.</p>
-          <a href='/docs' rel='noopener noreferrer' target='_blank'>
+          <Link to='/docs' rel='noopener noreferrer' target='_blank'>
             <p style={{ cursor: 'pointer', color: 'rgb(65, 131, 196)' }}>
               Start adding logs
             </p>
-          </a>
+          </Link>
         </div>
       );
 
@@ -448,7 +448,4 @@ const mapStateToProps = state => {
   return { auth: state.auth, devices: state.devices };
 };
 
-export default connect(
-  mapStateToProps,
-  { deleteDevice }
-)(Device);
+export default connect(mapStateToProps, { deleteDevice })(Device);
