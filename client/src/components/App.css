@@ -702,6 +702,10 @@ p {
   min-width: 500px;
 }
 
+.ui.basic.segment.monitoring {
+  min-width: 365px;
+}
+
 .ui.button.delete-device {
   position: absolute;
   bottom: 0;
@@ -717,4 +721,21 @@ p {
 
 .area {
   fill: lightsteelblue;
+}
+
+.path-line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.view-details {
+  margin-left: 10px;
+  cursor: pointer;
+  color: steelblue;
+  font-size: 15px;
+}
+
+.ui.basic.segment.device-details {
+  margin: 50px 5px;
 }

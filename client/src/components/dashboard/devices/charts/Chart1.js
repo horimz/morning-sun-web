@@ -124,7 +124,7 @@ class Chart1 {
       .datum(this.data)
       .attr('fill', 'none')
       .attr('stroke', 'steelblue')
-      .attr('stroke-width', 1.5)
+      .attr('stroke-width', 2)
       .attr(
         'd',
         d3
@@ -138,17 +138,17 @@ class Chart1 {
     this.circles
       .enter()
       .append('circle')
-      .attr('r', '3')
+      .attr('r', '1')
       .attr('cx', d => this.x(new Date(d.date)))
       .attr('cy', d => this.y(d.value))
       .attr('fill', d => 'steelblue');
 
     // Add rects for points
-    var [start, end] = d3.extent(this.data, d => new Date(d.date));
-    const diffTime = Math.abs(new Date(end) - new Date(start));
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    // var [start, end] = d3.extent(this.data, d => new Date(d.date));
+    // const diffTime = Math.abs(new Date(end) - new Date(start));
+    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    var rectWidth = graphWidth / diffDays;
+    var rectWidth = graphWidth;
     this.rects = this.graph.selectAll('rect').data(this.data);
     this.rects
       .enter()

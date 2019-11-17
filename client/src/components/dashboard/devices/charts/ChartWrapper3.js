@@ -15,7 +15,7 @@ class ChartWrapper extends Component {
       )
     });
 
-    // window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -34,7 +34,7 @@ class ChartWrapper extends Component {
   }
 
   componentWillUnmount() {
-    // window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   updateWindowDimensions = () => {
@@ -44,6 +44,7 @@ class ChartWrapper extends Component {
     chart.resize(
       this.refs.chart3,
       this.props.data,
+      this.props.type,
       window.innerWidth,
       window.innerHeight
     );
