@@ -10,6 +10,7 @@ router.get('/api/device', authenticateToken, async (req, res) => {
   const { uid } = req.user;
   const result = {
     deviceInformation: [],
+    messages: {},
     numOfLogs: { critical: 0, error: 0, warning: 0, info: 0 },
     logs: []
   };
@@ -24,6 +25,7 @@ router.get('/api/device', authenticateToken, async (req, res) => {
   const subCollectionIds = [];
   subCollections.forEach(collection => {
     subCollectionIds.push(collection.id);
+    result.messages[collection.id] = [];
   });
 
   for (var i = 0; i < subCollectionIds.length; i++) {
@@ -35,6 +37,10 @@ router.get('/api/device', authenticateToken, async (req, res) => {
     subCollection.forEach(doc => {
       numOfDataPublished += 1;
       // find last data published time
+      const data = doc.data();
+      data['_id'] = doc.id;
+
+      result.messages[subCollectionId].push(data);
     });
 
     result.deviceInformation.push({
@@ -49,6 +55,7 @@ router.get('/api/device', authenticateToken, async (req, res) => {
   // for (let i = 0; i < logs.length; i++)
   logs.forEach(doc => {
     const log = doc.data();
+    log['_id'] = doc.id;
 
     if (log.deviceId === devicdId) {
       result.logs.push(log);
@@ -67,7 +74,7 @@ router.get('/api/device', authenticateToken, async (req, res) => {
           result.numOfLogs.info += 1;
           break;
         default:
-          console.warning('Undefined log level');
+          console.log('Undefined log level');
           break;
       }
     }

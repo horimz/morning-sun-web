@@ -7,8 +7,6 @@ const router = new express.Router();
 // authenticateToken middleware stores the user information in the request (req.user = user)
 router.get('/api/logs', authenticateToken, async (req, res) => {
   try {
-    // createRandomLogs(req.user.uid, 'info', 150);
-
     const logs = await fetchLogs(req.user.uid);
     if (!logs) throw new Error('Failed to fetch logs.');
     res.send(logs);
@@ -60,28 +58,6 @@ async function fetchLogs(uid) {
   }
 
   return logs;
-}
-
-async function createRandomLogs(uid, level, n) {
-  try {
-    const logsCollectionRef = await firestore.collection(`users/${uid}/logs`);
-
-    const log = {
-      date: new Date().toString(),
-      deviceId: 'pi-1',
-      message: 'This is a log message for test purpose',
-      level
-    };
-
-    for (var i = 0; i < n; i++) {
-      await logsCollectionRef.add(log);
-    }
-
-    console.log(`Created ${n} ${level} logs`);
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
 }
 
 module.exports = router;
