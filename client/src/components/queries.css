@@ -7,4 +7,44 @@
   .api-key-text {
     font-size: 12px;
   }
+
+  .ui.basic.segment.device-content {
+    text-align: center;
+    margin: 0px 0px;
+  }
+
+  .ui.segments.device {
+    min-width: 500px;
+    padding: 14px 14px 0px;
+    background-color: #fff;
+    transition: box-shadow 0.25s ease-in-out;
+  }
+
+  .ui.basic.segment.device-content {
+    text-align: center;
+    margin: 0px;
+  }
+
+  .eight.wide.column.device-charts {
+    min-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .ui.basic.segment.device-content {
+    text-align: center;
+    margin: 0px 100px;
+  }
+
+  .ui.segments.device {
+    min-width: 500px;
+    padding: 14px 14px 0px;
+    background-color: #fff;
+    transition: box-shadow 0.25s ease-in-out;
+  }
+
+  .ui.basic.segment.device-content {
+    text-align: center;
+    margin: 0px;
+  }
 }

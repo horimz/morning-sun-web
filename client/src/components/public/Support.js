@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Docs() {
+function Support() {
   return (
     <div
       className='ui segment'
       style={{ textAlign: 'center', height: '100vh' }}
     >
-      Docs
+      Support
     </div>
   );
 }
 
-export default Docs;
+export default Support;

@@ -20,6 +20,10 @@ header {
   height: 100vh;
 }
 
+.ui.segment {
+  font-family: 'Poppins', 'Source Sans Pro', 'Lucida Grande', sans-serif;
+}
+
 .signin {
   background-image: linear-gradient(#f7f4f4, #f7f4f4);
   background-size: cover;
@@ -57,19 +61,23 @@ header {
 
 .your-devices {
   color: #fff;
+  min-width: 100px;
 }
 
 .add-device {
   color: #1a73e8;
+  margin-top: 15px;
 }
 
 .add-device-segment {
   text-align: center;
-  padding: 50px 9px;
+  padding: 50px 20px;
 }
 
 .device-segment {
-  padding: 0px 14px 123px;
+  padding: 0px 0px 137px;
+  font-size: 20px;
+  color: #30336b;
 }
 
 .ui.ui.segment.device {
@@ -537,7 +545,7 @@ p {
 
 .key-copy-popup {
   border-radius: 8px;
-  opacity: 1;
+  opacity: 0.75;
   text-align: center;
   width: 130px;
 }
@@ -574,4 +582,139 @@ p {
 
 .home-icon {
   font-size: 23px;
+}
+
+.ui.segment.not-found {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+}
+
+.ui.segment.not-found-box {
+  text-align: center;
+  padding: 300px 0px;
+  height: 100vh;
+  background-color: #ecf0f1;
+}
+
+.ui.basic.segment.current-device {
+  background-image: linear-gradient(#f5f6fa, #f5f6fa);
+  padding: 50px 0px 50px;
+  margin: 0px;
+}
+
+.ui.basic.segment.device-content {
+  text-align: center;
+  margin: 0px 50px 200px;
+}
+
+.ui.segment.no-device {
+  font-style: oblique;
+  padding: 70px 0px;
+  border-radius: 8px;
+  margin: 50px 0px 200px;
+}
+
+.dotted-lines {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1px;
+  stroke-dasharray: 4;
+}
+
+.x-axis {
+  color: grey;
+  font-weight: 500;
+}
+
+.x-axis path,
+.x-axis line {
+  fill: none;
+  stroke: none;
+}
+
+.y-axis {
+  color: grey;
+  font-weight: 500;
+}
+
+.y-axis path,
+.y-axis line {
+  fill: none;
+  stroke: none;
+}
+
+.y-axis-grid .tick {
+  opacity: 0.4;
+  color: grey;
+  font-weight: 500;
+}
+
+.y-axis-grid path {
+  stroke-width: 0;
+}
+
+.chart-tip-fixedText {
+  fill: grey;
+  font-size: 11px;
+}
+
+.chart-tip-text1 {
+  fill: grey;
+  font-size: 11px;
+}
+
+.bar-chart-tip-text {
+  fill: grey;
+  font-size: 15px;
+}
+
+.chart-tip-text-value {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  fill: black;
+}
+
+.ui.segments.device {
+  padding: 14px 14px 50px;
+  background-color: #fff;
+  transition: box-shadow 0.25s ease-in-out;
+}
+
+.ui.segments.device:hover,
+.ui.segments.device:active {
+  box-shadow: 0 10px 6px -6px #a4b0be;
+}
+
+.ui.basic.segment.device-no-data {
+  padding: 50px 0px;
+}
+
+.lines {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1px;
+  stroke-dasharray: 4;
+}
+
+.eight.wide.column.device-charts {
+  min-width: 500px;
+}
+
+.ui.button.delete-device {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #1abc9c;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.ui.button.delete-device:hover,
+.ui.button.delete-device:active {
+  background-color: rgba(178, 190, 195, 0.5);
+}
+
+.area {
+  fill: lightsteelblue;
 }

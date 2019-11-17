@@ -12,7 +12,11 @@ const fetchDevices = () => async dispatch => {
 };
 
 const addDevice = id => async dispatch => {
-  const res = await axios.post('/api/addDevice', { id });
+  const res = await axios.post('/api/addDevice', {
+    id,
+    date: new Date()
+  });
+
   dispatch({
     type: FETCH_DEVICES,
     payload: { data: res.data, status: 'created' }
@@ -27,12 +31,13 @@ const updateDevice = values => async dispatch => {
   });
 };
 
-const deleteDevice = id => async dispatch => {
-  const res = await axios.delete('/api/device', { params: { id } });
+const deleteDevice = (_id, id) => async dispatch => {
+  const res = await axios.delete('/api/device', { params: { _id, id } });
   dispatch({
     type: FETCH_DEVICES,
     payload: { data: res.data, status: 'deleted' }
   });
+  window.location.replace('/dashboard');
 };
 
 const resetDeviceStatus = devices => dispatch => {

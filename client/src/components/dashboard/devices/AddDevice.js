@@ -87,7 +87,7 @@ class AddDevice extends Component {
     );
 
     return (
-      <Modal dimmer={true} open={open} onClose={this.closeModal}>
+      <Modal dimmer={true} open={open} onClose={this.closeModal} size='small'>
         <Modal.Header>{header}</Modal.Header>
         <Modal.Content>{content}</Modal.Content>
         <Modal.Actions>{actions}</Modal.Actions>

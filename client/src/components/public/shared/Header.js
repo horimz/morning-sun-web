@@ -100,13 +100,25 @@ class Header extends Component {
               </Link>
             )}
           </div>
+
+          {this.props.dashboard ? null : (
+            <div
+              className='ui basic segment'
+              style={{ margin: '0px', padding: '0px' }}
+            >
+              <Link to='/support'>
+                <p className='header-dropdown-content'>Support</p>
+              </Link>
+            </div>
+          )}
+
           <div
             className='ui basic segment'
             style={{ margin: '0px', padding: '0px' }}
           >
-            <Link to='/support'>
-              <p className='header-dropdown-content'>Support</p>
-            </Link>
+            <a href='/docs' rel='noopener noreferrer' target='_blank'>
+              <p className='header-dropdown-content'>Docs</p>
+            </a>
           </div>
 
           <Dropdown.Divider style={{ margin: '0px' }} />
@@ -137,12 +149,13 @@ class Header extends Component {
 
   render() {
     const { visible } = this.state;
+    const { style } = this.props;
     return (
       <Menu
         className={visible ? 'shared-header' : 'shared-header-hidden'}
         size='tiny'
         borderless
-        // style={{ padding: '10px 0px' }}
+        style={style}
       >
         <Menu.Item style={{ padding: '0px' }}>{this.renderLogo()}</Menu.Item>
         <Menu.Item position='right'>{this.renderHeaderContent()}</Menu.Item>

@@ -22,6 +22,7 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
+    console.log('Fetching "/dashboard"');
     this.props.fetchDevices();
   }
 

@@ -10,6 +10,7 @@ import Login from './public/Login';
 import Product from './public/Product';
 import Purchase from './public/Purchase';
 import Docs from './public/Docs';
+import Support from './public/Support';
 import TermsOfService from './public/TermsOfService';
 import PrivacyPolicy from './public/PrivacyPolicy';
 import Dashboard from './dashboard';
@@ -52,6 +53,7 @@ class App extends Component {
             <ScrollToTopRoute path='/product' component={Product} />
             <ScrollToTopRoute path='/purchase' component={Purchase} />
             <ScrollToTopRoute path='/docs' component={Docs} />
+            <ScrollToTopRoute path='/support' component={Support} />
             <ScrollToTopRoute
               exact
               path='/terms-of-service'

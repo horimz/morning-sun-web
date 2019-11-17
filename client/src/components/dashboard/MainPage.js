@@ -100,7 +100,7 @@ class MainPage extends Component {
                     >
                       <div
                         className='ui segment device'
-                        style={{ borderRadius: '8px' }}
+                        style={{ borderRadius: '8px', minWidth: '170px' }}
                         onClick={this.handleAnimationChange}
                       >
                         <div className='add-device-segment'>
