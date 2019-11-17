@@ -12,11 +12,11 @@ var parseTime = d3.timeParse('%Y-%m-%d');
 class Chart3 {
   constructor(element, data, type, windowWidth, windowHeight) {
     this.type = type;
-    this.data = data;
-    // this.data.forEach(d => {
-    //   d['_date'] = d.date;
-    //   d.date = parseTime(d.date.split('T')[0]);
-    // });
+    this.data = data.map(d => d);
+    this.data.forEach(d => {
+      d['_date'] = d.date;
+      d.date = parseTime(d.date.split('T')[0]);
+    });
 
     // Add svg element to DOM
     this.svg = d3
@@ -59,12 +59,17 @@ class Chart3 {
     this.data = data;
     this.type = type;
 
+    // this.data.forEach(d => {
+    //   d['_date'] = d.date;
+    //   d.date = parseTime(d.date.split('T')[0]);
+    // });
+
     // Set Axis
     this.x.domain(d3.extent(this.data, d => new Date(d.date)));
     this.y.domain([0, d3.max(this.data, d => d[this.type])]);
 
-    // console.log(this.data);
-    // console.log(this.type);
+    console.log(this.data);
+    console.log(this.type);
 
     // update path data
     this.areaPath
@@ -95,12 +100,12 @@ class Chart3 {
 
     this.xAxis = d3
       .axisBottom(this.x)
-      .ticks(4)
+      .ticks(6)
       .tickFormat(d3.timeFormat('%H:%M %p'));
 
     this.yAxis = d3
       .axisLeft(this.y)
-      .ticks(3)
+      .ticks(4)
       .tickSize(-graphWidth, 0, 0);
 
     this.xAxisGroup.call(this.xAxis);
