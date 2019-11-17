@@ -28,10 +28,16 @@ class Analytics extends Component {
           style={{
             margin: '0px',
             paddingBottom: '100px',
-            backgroundImage: 'linear-gradient(#f5f6fa, #f5f6fa)'
+            backgroundImage: 'linear-gradient(#f5f6fa, #f5f6fa)',
+            height: '90vh'
           }}
         >
-          <div className='ui segment'>Content</div>
+          <div
+            className='ui segment'
+            style={{ padding: '50px', margin: '50px', textAlign: 'center' }}
+          >
+            Content
+          </div>
         </div>
         <Footer />
       </div>

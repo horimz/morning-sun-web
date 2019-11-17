@@ -12,7 +12,7 @@ class SignIn extends Component {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: '/dashboard',
+    // signInSuccessUrl: '/dashboard',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
       // firebase.auth.EmailAuthProvider.PROVIDER_ID,

@@ -387,7 +387,8 @@ class Device extends Component {
         </div>
       );
 
-    if (deviceInformation === false) return <Redirect to='/dashboard' />;
+    if (deviceInformation === false)
+      return window.location.replace('/dashboard');
 
     return (
       <Sidebar.Pushable>

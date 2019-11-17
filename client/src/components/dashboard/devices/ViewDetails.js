@@ -12,12 +12,6 @@ const status = {
 class ViewDetails extends Component {
   state = { type: null, date: null };
 
-  // componentDidMount() {
-  //   const { logs, messages } = this.props;
-  //   console.log(logs);
-  //   console.log(messages);
-  // }
-
   updateType = (event, data) => this.setState({ type: data.value });
   updateDate = (event, data) => this.setState({ date: data.value });
 
@@ -119,9 +113,9 @@ class ViewDetails extends Component {
     const rows = messages[date].map(message => {
       return (
         <Table.Row key={message._id}>
-          <Table.Cell>{message.power}</Table.Cell>
-          <Table.Cell>{message.voltage}</Table.Cell>
-          <Table.Cell>{message.current}</Table.Cell>
+          <Table.Cell>{message.power}W</Table.Cell>
+          <Table.Cell>{message.voltage}V</Table.Cell>
+          <Table.Cell>{message.current}A</Table.Cell>
           <Table.Cell>{message.date}</Table.Cell>
         </Table.Row>
       );

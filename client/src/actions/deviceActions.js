@@ -33,11 +33,11 @@ const updateDevice = values => async dispatch => {
 
 const deleteDevice = (_id, id) => async dispatch => {
   const res = await axios.delete('/api/device', { params: { _id, id } });
+  window.location.replace('/dashboard');
   dispatch({
     type: FETCH_DEVICES,
     payload: { data: res.data, status: 'deleted' }
   });
-  window.location.replace('/dashboard');
 };
 
 const resetDeviceStatus = devices => dispatch => {

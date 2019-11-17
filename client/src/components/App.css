@@ -32,28 +32,32 @@ header {
 }
 
 .dashboard-main {
-  background-image: linear-gradient(#1a73e8, #1a73e8);
+  /* background-image: linear-gradient(#1a73e8, #1a73e8); */
+  background-image: url('./images/blue_landing.png');
   background-size: cover;
   background-position: center;
   height: 100%;
 }
 
 .dashboard-device {
-  background-image: linear-gradient(#1abc9c, #1abc9c);
+  /* background-image: linear-gradient(#1abc9c, #1abc9c); */
+  background-image: url('./images/mint_landing.png');
   background-size: cover;
   background-position: center;
   height: 100%;
 }
 
 .dashboard-logs {
-  background-image: linear-gradient(#e67e22, #d35400);
+  /* background-image: linear-gradient(#e67e22, #d35400); */
+  background-image: url('./images/orange_landing.png');
   background-size: cover;
   background-position: center;
   height: 100%;
 }
 
 .dashboard-analytics {
-  background-image: linear-gradient(#a29bfe, #6c5ce7);
+  /* background-image: linear-gradient(#a29bfe, #6c5ce7); */
+  background-image: url('./images/purple_landing.png');
   background-size: cover;
   background-position: center;
   height: 100%;
@@ -710,7 +714,8 @@ p {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #1abc9c;
+  background-color: #0090a8;
+  color: #dfe6e9;
   transition: background-color 0.25s ease-in-out;
 }
 
