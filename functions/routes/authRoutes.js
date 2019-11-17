@@ -1,16 +1,17 @@
 const express = require('express');
-const router = new express.Router();
 const uuidAPIKey = require('uuid-apikey');
 const authenticateToken = require('../middlewares/authenticateToken');
 const { firestore } = require('../firebase/firebase-admin');
 
+const router = new express.Router();
+
 router.post('/api/login', async (req, res) => {
   const user = req.body;
-
   const userDocRef = firestore.doc(`users/${user.uid}`);
   const userDoc = await userDocRef.get();
 
   if (!userDoc.exists) {
+    user['purchased'] = false;
     await userDocRef.set(user);
     console.log('Successfuly added a new user to firestore!');
   }

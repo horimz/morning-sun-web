@@ -1,12 +1,13 @@
 const express = require('express');
-const router = new express.Router();
 const authenticateToken = require('../middlewares/authenticateToken');
 const { firestore } = require('../firebase/firebase-admin');
+
+const router = new express.Router();
 
 // authenticateToken middleware stores the user information in the request (req.user = user)
 router.get('/api/logs', authenticateToken, async (req, res) => {
   try {
-    // createRandomLogs(req.user.uid, 'info', 10);
+    // createRandomLogs(req.user.uid, 'info', 150);
 
     const logs = await fetchLogs(req.user.uid);
     if (!logs) throw new Error('Failed to fetch logs.');
@@ -75,6 +76,8 @@ async function createRandomLogs(uid, level, n) {
     for (var i = 0; i < n; i++) {
       await logsCollectionRef.add(log);
     }
+
+    console.log(`Created ${n} ${level} logs`);
   } catch (error) {
     console.log(error);
     return false;

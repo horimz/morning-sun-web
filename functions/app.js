@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
 const logRoutes = require('./routes/logRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(authRoutes);
 app.use(deviceRoutes);
 app.use(logRoutes);
 app.use(feedbackRoutes);
+app.use(apiRoutes);
 
 // app.use(express.static(__dirname + '../client/build/index.html'));
 app.get('/*', (req, res) => {
