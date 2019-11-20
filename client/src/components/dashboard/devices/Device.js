@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Modal, Menu, Dropdown, Sidebar } from 'semantic-ui-react';
 import Header from '../../public/shared/Header';
 import Footer from '../../public/shared/Footer';
@@ -50,6 +49,7 @@ class Device extends Component {
       if (data[i].id === params.id) {
         this.setState({ currentDevice: data[i] });
         _id = data[i]._id;
+        s;
       }
     }
 
@@ -57,11 +57,21 @@ class Device extends Component {
       this.setState({ deviceInformation: false });
     } else {
       const res = await axios.get('/api/device', { params: { id: _id } });
+      const messages = res.data.messages;
+      const keys = Object.keys(messages);
+
+      for (let i = 0; i < keys.length; i++) {
+        messages[keys[i]].map(msg => {
+          msg['date'] = new Date(msg.timeinmillis).toString();
+          return msg;
+        });
+      }
+
       this.setState({
         deviceInformation: res.data.deviceInformation,
         numOfLogs: res.data.numOfLogs,
         logs: res.data.logs,
-        messages: res.data.messages
+        messages
       });
     }
 
@@ -82,7 +92,11 @@ class Device extends Component {
     deviceCollectionRef.onSnapshot(res => {
       res.docChanges().forEach(change => {
         console.log('onSnapshot', change.type);
-        const doc = { ...change.doc.data(), id: change.doc.id };
+        const doc = {
+          ...change.doc.data(),
+          id: change.doc.id,
+          date: new Date(change.doc.data().timeinmillis).toString()
+        };
 
         switch (change.type) {
           case 'added':
@@ -211,11 +225,15 @@ class Device extends Component {
       return (
         <div className='ui basic segment device-no-data'>
           <p>No messages were published from this device.</p>
-          <Link to='/docs' rel='noopener noreferrer' target='_blank'>
+          <a
+            href='https://github.com/horimz/morning-sun'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
             <p style={{ cursor: 'pointer', color: 'rgb(65, 131, 196)' }}>
               Start publishing data
             </p>
-          </Link>
+          </a>
         </div>
       );
 
@@ -250,11 +268,15 @@ class Device extends Component {
       return (
         <div className='ui basic segment device-no-data'>
           <p>No logs were published from this device.</p>
-          <Link to='/docs' rel='noopener noreferrer' target='_blank'>
+          <a
+            href='https://github.com/horimz/morning-sun'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
             <p style={{ cursor: 'pointer', color: 'rgb(65, 131, 196)' }}>
               Start adding logs
             </p>
-          </Link>
+          </a>
         </div>
       );
 

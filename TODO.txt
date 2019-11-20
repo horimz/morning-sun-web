@@ -1,0 +1,6 @@
+[Fixes to make]
+1. Logs page
+- Refresh input filter when user changes a dropdown filter
+
+2. Device page
+- Add loading state when adding documents to data for chart render

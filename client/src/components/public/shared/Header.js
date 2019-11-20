@@ -116,7 +116,7 @@ class Header extends Component {
             className='ui basic segment'
             style={{ margin: '0px', padding: '0px' }}
           >
-            <Link to='/docs' rel='noopener noreferrer' target='_blank'>
+            <Link to='/docs'>
               <p className='header-dropdown-content'>Docs</p>
             </Link>
           </div>

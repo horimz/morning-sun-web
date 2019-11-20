@@ -61,12 +61,12 @@ router.post('/api/msun/publish', authenticateToken, async (req, res) => {
   const { uid } = req.user;
   const { config, values } = req.body;
 
-  const { date, today, now, deviceId } = config;
+  const { timeinmillis, today, now, deviceId } = config;
   const { voltage, current, power } = values;
 
   // format
   const data = {
-    date,
+    timeinmillis,
     voltage,
     current,
     power

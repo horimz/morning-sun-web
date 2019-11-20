@@ -308,7 +308,4 @@ const mapStateToProps = state => {
   return { auth: state.auth, devices: state.devices };
 };
 
-export default connect(
-  mapStateToProps,
-  { generateKey }
-)(MainPage);
+export default connect(mapStateToProps, { generateKey })(MainPage);
