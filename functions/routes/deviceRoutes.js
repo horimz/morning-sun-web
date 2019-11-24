@@ -24,8 +24,10 @@ router.get('/api/device', authenticateToken, async (req, res) => {
 
   const subCollectionIds = [];
   subCollections.forEach(collection => {
-    subCollectionIds.push(collection.id);
-    result.messages[collection.id] = [];
+    if (collection.id !== 'bms') {
+      subCollectionIds.push(collection.id);
+      result.messages[collection.id] = [];
+    }
   });
 
   for (var i = 0; i < subCollectionIds.length; i++) {

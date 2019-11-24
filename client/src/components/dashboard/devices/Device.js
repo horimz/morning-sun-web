@@ -9,6 +9,9 @@ import Spinner1 from '../../../utils/Spinner1';
 import ChartWrapper1 from './charts/ChartWrapper1';
 import ChartWrapper2 from './charts/ChartWrapper2';
 import ChartWrapper3 from './charts/ChartWrapper3';
+import ChartWrapper4 from './charts/ChartWrapper4';
+import ChartWrapper5 from './charts/ChartWrapper5';
+import ChartWrapper6 from './charts/ChartWrapper6';
 import ViewDetails from './ViewDetails';
 import { deviceActions } from '../../../actions';
 import Spinner2 from '../../../utils/Spinner2';
@@ -31,6 +34,7 @@ class Device extends Component {
     isFetching: true,
     type: 'power',
     data: [],
+    bms: null,
     windowWidth: window.innerWidth,
     windowHeight: window.innerHeight,
     MAX_NUM_TO_DISPLAY: 50
@@ -49,7 +53,6 @@ class Device extends Component {
       if (data[i].id === params.id) {
         this.setState({ currentDevice: data[i] });
         _id = data[i]._id;
-        s;
       }
     }
 
@@ -109,6 +112,30 @@ class Device extends Component {
             break;
           case 'modified':
             return console.log('modified: ', doc);
+          case 'removed':
+            return console.log('removed: ', doc);
+          default:
+            return console.warning('Unknown change type has been detected');
+        }
+      });
+    });
+
+    const bmsCollectionRef = firestore.collection(
+      `users/${auth.uid}/devices/${deviceId}/bms`
+    );
+
+    bmsCollectionRef.onSnapshot(res => {
+      res.docChanges().forEach(change => {
+        console.log('BMS doc', change.type);
+        const doc = { ...change.doc.data() };
+
+        switch (change.type) {
+          case 'added':
+            this.setState({ bms: doc });
+            break;
+          case 'modified':
+            this.setState({ bms: doc });
+            break;
           case 'removed':
             return console.log('removed: ', doc);
           default:
@@ -213,6 +240,23 @@ class Device extends Component {
           style={{ minWidth: '300px' }}
         >
           <div className='ui segments device'>{this.renderDetails()}</div>
+        </div>
+        <div className='ui basic segment'>
+          <div className='ui segments device'>{this.renderBMS()}</div>
+        </div>
+        <div className='ui basic segment'>
+          <div className='ui grid'>
+            <div className='eight wide column device-charts'>
+              <div className='ui segments device' style={{ minWidth: '300px' }}>
+                {this.renderChargeRate()}
+              </div>
+            </div>
+            <div className='eight wide column device-charts'>
+              <div className='ui segments device' style={{ minWidth: '300px' }}>
+                {this.renderTemperature()}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -384,6 +428,72 @@ class Device extends Component {
         onChange={this.handleTypeUpdate}
         value={type}
       />
+    );
+  }
+
+  renderBMS() {
+    const { bms } = this.state;
+
+    if (bms === null)
+      return (
+        <div className='ui basic segment device-no-data'>
+          <p>No data was published by your BMS.</p>
+        </div>
+      );
+
+    return (
+      <div>
+        <div className='ui basic segment' style={{ marginTop: '10px' }}>
+          <h3>Battery Management System</h3>
+        </div>
+        <div className='ui basic segment'>
+          <ChartWrapper4 data={bms} />
+        </div>
+      </div>
+    );
+  }
+
+  renderChargeRate() {
+    const { bms } = this.state;
+
+    if (bms === null)
+      return (
+        <div className='ui basic segment device-no-data'>
+          <p>No data published.</p>
+        </div>
+      );
+
+    return (
+      <div>
+        <div className='ui basic segment' style={{ marginTop: '10px' }}>
+          <h3>Charge Rate</h3>
+        </div>
+        <div className='ui basic segment'>
+          <ChartWrapper5 data={bms} />
+        </div>
+      </div>
+    );
+  }
+
+  renderTemperature() {
+    const { bms } = this.state;
+
+    if (bms === null)
+      return (
+        <div className='ui basic segment device-no-data'>
+          <p>No data published.</p>
+        </div>
+      );
+
+    return (
+      <div>
+        <div className='ui basic segment' style={{ marginTop: '10px' }}>
+          <h3>Temperature</h3>
+        </div>
+        <div className='ui basic segment'>
+          <ChartWrapper6 data={bms} />
+        </div>
+      </div>
     );
   }
 
