@@ -20,7 +20,7 @@
     "firebase-functions": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "uuid-apikey": "^1.4.6"
   },
   "devDependencies": {
